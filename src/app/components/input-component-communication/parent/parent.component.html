@@ -1,0 +1,8 @@
+<div class="container my-5">
+  <h2>Parent</h2>
+  <hr />
+  <p>parent works!</p>
+
+  <app-child [isLoggedIn]="userLoggedIn" (greetEvent)="greetParent($event)"></app-child>
+  
+</div>

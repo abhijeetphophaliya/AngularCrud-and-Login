@@ -1,0 +1,10 @@
+<h2>Child</h2>
+<hr>
+<p>child works!</p>
+
+
+<p *ngIf="isLoggedIn">Welcome back</p>
+<p *ngIf="!isLoggedIn">Please login first</p>
+
+
+<button (click)="callParentGreet()" class="btn btn-primary">Greet and Check Console</button>

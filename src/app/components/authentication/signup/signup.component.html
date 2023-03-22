@@ -1,0 +1,142 @@
+<div class="container my-5">
+  <h3 class="mb-3">SignUp</h3>
+
+  <div class="row">
+    <div class="col-6">
+      <form [formGroup]="signUpForm">
+        <div class="mb-3">
+          <label for="firstName" class="form-label">FirstName</label>
+          <input
+            type="text"
+            formControlName="firstName"
+            class="form-control"
+            id="firstName"
+          />
+
+          <small
+            *ngIf="
+              (signUpForm.controls['firstName'].touched &&
+                signUpForm.controls['firstName'].invalid) ||
+              (signUpForm.controls['firstName'].dirty &&
+                signUpForm.hasError('required', 'firstName'))
+            "
+            class="text-danger"
+            >*FirstName is required</small
+          >
+        </div>
+
+        <div class="mb-3">
+          <label for="lastName" class="form-label">LastName</label>
+          <input
+            type="text"
+            formControlName="lastName"
+            class="form-control"
+            id="lastName"
+          />
+
+          <small
+            *ngIf="
+              (signUpForm.controls['lastName'].touched &&
+                signUpForm.controls['lastName'].invalid) ||
+              (signUpForm.controls['lastName'].dirty &&
+                signUpForm.hasError('required', 'lastName'))
+            "
+            class="text-danger"
+            >*LastName is required</small
+          >
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            id="email"
+          />
+
+          <div *ngIf="signUpForm.controls['email'].touched">
+            <small
+              *ngIf="signUpForm.hasError('required', 'email')"
+              class="text-danger"
+              >*Email is required</small
+            >
+
+            <small
+              *ngIf="signUpForm.hasError('email', 'email')"
+              class="text-danger"
+              >*Email is not valid</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="userName" class="form-label">UserName</label>
+          <input
+            type="text"
+            formControlName="userName"
+            class="form-control"
+            id="userName"
+          />
+
+          <small
+            *ngIf="
+              (signUpForm.controls['userName'].touched &&
+                signUpForm.controls['userName'].invalid) ||
+              (signUpForm.controls['userName'].dirty &&
+                signUpForm.hasError('required', 'userName'))
+            "
+            class="text-danger"
+            >*UserName is required</small
+          >
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            id="password"
+          />
+
+          <small
+            *ngIf="
+              (signUpForm.controls['password'].touched &&
+                signUpForm.controls['password'].invalid) ||
+              (signUpForm.controls['password'].dirty &&
+                signUpForm.hasError('required', 'password'))
+            "
+            class="text-danger"
+            >*Password is required</small
+          >
+        </div>
+
+        <div class="mb-3">
+            <small *ngIf="errorMessage != ''" class="text-danger"
+              >*{{ errorMessage }}</small
+            >
+          </div>
+          
+
+        <button
+          (click)="onSignUpSubmit()"
+          type="submit"
+          class="btn btn-primary"
+        >
+          SignUp
+        </button>
+
+        <div class="pt-2 text-muted">
+          Already have an account?
+          <a
+            id="haveAnAccount"
+            [routerLink]="['/login']"
+            routerLinkActive="router-link-active"
+            >Login</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

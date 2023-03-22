@@ -1,0 +1,134 @@
+<div class="container my-5">
+    <h3 class="mb-3">Edit Employee</h3>
+  
+    <div class="row">
+      <div class="col-6">
+        <form (ngSubmit)="updateEmployee()"  #form="ngForm" >
+
+            <div class="mb-3 " hidden>
+                <label for="id" class="form-label">Id</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="id"
+                  name="id"
+                  [(ngModel)]="employeeDetails.id"
+                />
+              </div>
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              required
+              ngModel
+              minlength="3"
+              #name="ngModel"
+              [(ngModel)]="employeeDetails.name"
+            />
+            <div *ngIf="name.touched">
+                <p class="error-help-block" *ngIf="name.errors?.['required']">
+                  Name is a required field!
+                </p>
+                <p class="error-help-block" *ngIf="name.errors?.['minlength']">
+                  Name minimum 3 characters are required!
+                </p>
+              </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              ngModel
+              #email="ngModel"
+              required
+              email
+              [(ngModel)]="employeeDetails.email"
+            />
+
+            <div *ngIf="email.touched">
+                <p class="error-help-block" *ngIf="email.errors?.['required']">
+                  Email is a required field!
+                </p>
+                <p class="error-help-block" *ngIf="email.errors?.['email']">
+                  This is not a valid Email!!!
+                </p>
+              </div>
+
+          </div>
+  
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input
+              type="number"
+              class="form-control"
+              id="phone"
+              name="phone"
+              ngModel
+              #phone="ngModel"
+              required
+              [(ngModel)]="employeeDetails.phone"
+            />
+            
+          <div *ngIf="phone.touched">
+            <p class="error-help-block" *ngIf="phone.errors?.['required']">
+                Phone is a required field!
+            </p>
+          </div>
+
+          </div>
+  
+          <div class="mb-3">
+            <label for="salary" class="form-label">Salary</label>
+            <input
+              type="number"
+              class="form-control"
+              id="salary"
+              name="salary"
+              ngModel
+              #salary="ngModel"
+              required
+              [(ngModel)]="employeeDetails.salary"
+            />
+
+            
+          <div *ngIf="salary.touched">
+            <p class="error-help-block" *ngIf="salary.errors?.['required']">
+                Salary is a required field!
+            </p>
+          </div>
+
+          </div>
+  
+        
+  
+          <div class="mb-3">
+            <label for="department" class="form-label">Department</label>
+            <select class="form-select" 
+            id="department"
+            name="department"
+            [(ngModel)]="employeeDetails.department"  >
+              <option value="Please Select" selected>Please Select</option>
+              <option value="IT">IT</option>
+              <option value="Civil">Civil</option>
+              <option value="Computer">Computer</option>
+            </select>
+          </div>
+
+          <button  [disabled]="!form.valid" type="submit" class="btn btn-primary mx-2">Update</button>
+
+          <button type="button" class="btn btn-danger" (click)="deleteEmployee(employeeDetails.id)">Delete</button>
+          <hr>
+          {{ form.value | json }}
+        </form>
+      </div>
+    </div>
+  </div>
+  

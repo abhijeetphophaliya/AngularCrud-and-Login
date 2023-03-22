@@ -1,0 +1,125 @@
+<div class="container my-5">
+  <h3 class="mb-3">Add New Employee</h3>
+
+  <div class="row">
+    <div class="col-6">
+      <form (ngSubmit)="AddEmployee(form)" #form="ngForm">
+        <div class="mb-3 form-group">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            required
+            ngModel
+            minlength="3"
+            #name="ngModel"
+            [(ngModel)]="addEmployeeRequest.name"
+          />
+          <div *ngIf="name.touched">
+            <p class="error-help-block" *ngIf="name.errors?.['required']">
+              Name is a required field!
+            </p>
+            <p class="error-help-block" *ngIf="name.errors?.['minlength']">
+              Name minimum 3 characters are required!
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            ngModel
+            #email="ngModel"
+            required
+            email
+            [(ngModel)]="addEmployeeRequest.email"
+          />
+          <div *ngIf="email.touched">
+            <p class="error-help-block" *ngIf="email.errors?.['required']">
+              Email is a required field!
+            </p>
+            <p class="error-help-block" *ngIf="email.errors?.['email']">
+              This is not a valid Email!!!
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input
+            type="number"
+            class="form-control"
+            id="phone"
+            name="phone"
+            ngModel
+            #phone="ngModel"
+            required
+            [(ngModel)]="addEmployeeRequest.phone"
+          />
+
+          <div *ngIf="phone.touched">
+            <p class="error-help-block" *ngIf="phone.errors?.['required']">
+                Phone is a required field!
+            </p>
+          </div>
+
+        </div>
+
+        <div class="mb-3">
+          <label for="salary" class="form-label">Salary</label>
+          <input
+            type="number"
+            class="form-control"
+            id="salary"
+            name="salary"
+            ngModel
+            #salary="ngModel"
+            required
+            [(ngModel)]="addEmployeeRequest.salary"
+          />
+
+          <div *ngIf="salary.touched">
+            <p class="error-help-block" *ngIf="salary.errors?.['required']">
+                Salary is a required field!
+            </p>
+           
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="department" class="form-label">Department</label>
+          <select
+            class="form-select"
+            required
+            id="department"
+            name="department"
+            ngModel
+            #department="ngModel"
+            [(ngModel)]="addEmployeeRequest.department"
+          >
+            <option value="IT" selected>IT</option>
+            <option value="Civil">Civil</option>
+            <option value="Computer">Computer</option>
+          </select>
+
+          <div *ngIf="department.touched">
+            <p class="error-help-block" *ngIf="department.errors?.['required']">
+                Department is a required field!
+            </p>
+          </div>
+
+        </div>
+
+        <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Save</button>
+        <hr />
+        {{ form.value | json }}
+      </form>
+    </div>
+  </div>
+</div>
